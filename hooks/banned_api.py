@@ -177,6 +177,10 @@ def parse_cmd_line():
     #                     Final commit in patch mode (default: %(default)s)
     #                     """,
     #                     default="HEAD")
+    parser.add_argument(
+        'filenames', nargs='*',
+        help='Filenames pre-commit believes are changed.',
+    )
     parser.add_argument("--verbose", "-v",
                         help="Print verbose output",
                         action="store_true")
@@ -218,6 +222,6 @@ def main():
     else:
         sys.exit(1)
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    raise SystemExit(main())
 
