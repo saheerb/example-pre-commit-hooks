@@ -183,8 +183,7 @@ def parse_cmd_line():
     args = parser.parse_args()
     return args
 
-
-if __name__ == "__main__":
+def main():
     args = parse_cmd_line()
 
     os.chdir(args.tree)
@@ -218,3 +217,7 @@ if __name__ == "__main__":
         sys.exit(0)
     else:
         sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+
