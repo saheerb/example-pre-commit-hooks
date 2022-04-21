@@ -11,27 +11,12 @@ import re
 import sys
 import hooks.utils
 
-# File extensions to check
-VALID_FILE_EXTENSIONS = ('.c', '.S', '.h')
-
-# Paths inside the tree to ignore. Hidden folders and files are always ignored.
-# They mustn't end in '/'.
-IGNORED_FOLDERS = (
-    'platform/ext',
-    'bl2/ext',
-    'docs',
-    'lib',
-    'tools'
-)
-
-# List of ignored files in folders that aren't ignored
-IGNORED_FILES = ()
 
 # Regular expression for searching the Banned APIs. This is taken from the
 # Coding guideline in TF-A repo
 BANNED_APIS = ["strcpy", "wcscpy", "strncpy", "strcat", "wcscat", "strncat",
                "sprintf", "vsprintf", "strtok", "atoi", "atol", "atoll",
-               "itoa", "ltoa", "lltoa", "QSPI_FLASH_CHIP_STRING"]
+               "itoa", "ltoa", "lltoa"]
 BANNED_PATTERN = re.compile('|'.join(BANNED_APIS))
 
 COMMENTS_PATTERN = re.compile(r"//|/\*|\*/")
@@ -127,23 +112,6 @@ def get_tree_files():
 
     lines = stdout.splitlines()
     return lines
-
-
-def get_patch_files(base_commit, end_commit):
-    '''
-    Get all files that have changed in a given patch
-    '''
-
-    # Get patches of the affected commits with one line of context.
-    (rc, stdout, stderr) = utils.shell_command([
-        'git', 'diff-tree', '--diff-filter=ACMRT', '-r', '--name-only',
-        base_commit, end_commit])
-
-    if rc != 0:
-        return False
-
-    paths = stdout.splitlines()
-    return paths
 
 
 def parse_cmd_line():
