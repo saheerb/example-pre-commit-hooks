@@ -9,7 +9,7 @@ import argparse
 import os
 import re
 import sys
-import utils
+import hooks.utils
 
 # File extensions to check
 VALID_FILE_EXTENSIONS = ('.c', '.S', '.h')
