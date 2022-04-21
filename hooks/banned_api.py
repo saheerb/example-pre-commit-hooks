@@ -185,31 +185,31 @@ def parse_cmd_line():
 
 def main():
     args = parse_cmd_line()
+    print (args)
+    # os.chdir(args.tree)
 
-    os.chdir(args.tree)
+    # if args.patch:
+    #     print("Checking files modified between patches " + args.from_ref +
+    #           " and " + args.to_ref + "...\n")
+    #     files = get_patch_files(args.from_ref, args.to_ref)
+    # else:
+    #     print("Checking all files git repo " + os.path.abspath(args.tree) +
+    #           "...\n")
+    #     files = get_tree_files()
 
-    if args.patch:
-        print("Checking files modified between patches " + args.from_ref +
-              " and " + args.to_ref + "...\n")
-        files = get_patch_files(args.from_ref, args.to_ref)
-    else:
-        print("Checking all files git repo " + os.path.abspath(args.tree) +
-              "...\n")
-        files = get_tree_files()
+    # total_errors = 0
+    # for filename in files:
+    #     ignored = utils.file_is_ignored(filename, VALID_FILE_EXTENSIONS,
+    #                                     IGNORED_FILES, IGNORED_FOLDERS)
+    #     if ignored:
+    #         if args.verbose:
+    #             print("INFO: Skipping ignored file " + filename)
+    #         continue
 
-    total_errors = 0
-    for filename in files:
-        ignored = utils.file_is_ignored(filename, VALID_FILE_EXTENSIONS,
-                                        IGNORED_FILES, IGNORED_FOLDERS)
-        if ignored:
-            if args.verbose:
-                print("INFO: Skipping ignored file " + filename)
-            continue
+    #     if args.verbose:
+    #         print("INFO: Checking " + filename)
 
-        if args.verbose:
-            print("INFO: Checking " + filename)
-
-        total_errors += file_check_banned_api(filename)
+    total_errors += file_check_banned_api(filename)
 
     print(str(total_errors) + " errors found")
 
