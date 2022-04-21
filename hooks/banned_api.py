@@ -98,20 +98,6 @@ def file_check_banned_api(path, encoding='utf-8'):
     return count
 
 
-def get_tree_files():
-    '''
-    Get all files in the git repository
-    '''
-
-    # Get patches of the affected commits with one line of context.
-    (rc, stdout, stderr) = utils.shell_command(['git', 'ls-files'])
-    if rc != 0:
-        return False
-
-    lines = stdout.splitlines()
-    return lines
-
-
 def parse_cmd_line():
     parser = argparse.ArgumentParser(
         description="Check Banned APIs",
@@ -139,11 +125,7 @@ def main():
     for filename in args.filenames:
         total_errors += file_check_banned_api(filename)
 
-    if total_errors == 0:
-        sys.exit(0)
-    else:
-        sys.exit(1)
+    return total_errors
 
 if __name__ == '__main__':
     raise SystemExit(main())
-
