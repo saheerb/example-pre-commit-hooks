@@ -31,7 +31,7 @@ IGNORED_FILES = ()
 # Coding guideline in TF-A repo
 BANNED_APIS = ["strcpy", "wcscpy", "strncpy", "strcat", "wcscat", "strncat",
                "sprintf", "vsprintf", "strtok", "atoi", "atol", "atoll",
-               "itoa", "ltoa", "lltoa"]
+               "itoa", "ltoa", "lltoa", "QSPI_FLASH_CHIP_STRING"]
 BANNED_PATTERN = re.compile('|'.join(BANNED_APIS))
 
 COMMENTS_PATTERN = re.compile(r"//|/\*|\*/")
@@ -155,28 +155,6 @@ def parse_cmd_line():
         """
     )
 
-    # parser.add_argument("--tree", "-t",
-    #                     help="""
-    #                     Path to the source tree to check (default: %(default)s)
-    #                     """,
-    #                     default=os.curdir)
-    # parser.add_argument("--patch", "-p",
-    #                     help="""
-    #                     Patch mode. Instead of checking all files in
-    #                     the source tree, the script will consider only files
-    #                     that are modified by the latest patch(es).
-    #                     """,
-    #                     action="store_true")
-    # parser.add_argument("--from-ref",
-    #                     help="""
-    #                     Base commit in patch mode (default: %(default)s)
-    #                     """,
-    #                     default="origin/master")
-    # parser.add_argument("--to-ref",
-    #                     help="""
-    #                     Final commit in patch mode (default: %(default)s)
-    #                     """,
-    #                     default="HEAD")
     parser.add_argument(
         'filenames', nargs='*',
         help='Filenames pre-commit believes are changed.',
@@ -189,34 +167,11 @@ def parse_cmd_line():
 
 def main():
     args = parse_cmd_line()
-    print (args)
-    # os.chdir(args.tree)
-
-    # if args.patch:
-    #     print("Checking files modified between patches " + args.from_ref +
-    #           " and " + args.to_ref + "...\n")
-    #     files = get_patch_files(args.from_ref, args.to_ref)
-    # else:
-    #     print("Checking all files git repo " + os.path.abspath(args.tree) +
-    #           "...\n")
-    #     files = get_tree_files()
 
     total_errors = 0
-    # for filename in files:
-    #     ignored = utils.file_is_ignored(filename, VALID_FILE_EXTENSIONS,
-    #                                     IGNORED_FILES, IGNORED_FOLDERS)
-    #     if ignored:
-    #         if args.verbose:
-    #             print("INFO: Skipping ignored file " + filename)
-    #         continue
-
-    #     if args.verbose:
-    #         print("INFO: Checking " + filename)
 
     for filename in args.filenames:
         total_errors += file_check_banned_api(filename)
-
-    print(str(total_errors) + " errors found")
 
     if total_errors == 0:
         sys.exit(0)
