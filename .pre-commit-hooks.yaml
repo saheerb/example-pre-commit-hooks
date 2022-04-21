@@ -5,7 +5,7 @@
 
 - id: banned-api
   name: banned-api
-  entry: clang-format-hook
+  entry: banned-api-hook
   description: Formats C, C++, Objective-C, and Java code
   types_or: [c, c++, c#, objective-c, java]
   language: python
