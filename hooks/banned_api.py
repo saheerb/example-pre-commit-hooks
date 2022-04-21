@@ -201,7 +201,7 @@ def main():
     #           "...\n")
     #     files = get_tree_files()
 
-    # total_errors = 0
+    total_errors = 0
     # for filename in files:
     #     ignored = utils.file_is_ignored(filename, VALID_FILE_EXTENSIONS,
     #                                     IGNORED_FILES, IGNORED_FOLDERS)
@@ -213,7 +213,8 @@ def main():
     #     if args.verbose:
     #         print("INFO: Checking " + filename)
 
-    total_errors += file_check_banned_api(filename)
+    for filename in args.filenames:
+        total_errors += file_check_banned_api(filename)
 
     print(str(total_errors) + " errors found")
 
