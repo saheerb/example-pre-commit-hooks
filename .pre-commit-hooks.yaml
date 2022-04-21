@@ -1,0 +1,11 @@
+---
+# This file tells https://pre-commit.com/
+# which hooks are provided by this repo
+# for use by other git repos.
+
+- id: banned-api
+  name: banned-api
+  entry: clang-format-hook
+  description: Formats C, C++, Objective-C, and Java code
+  types_or: [c, c++, c#, objective-c, java]
+  language: python
