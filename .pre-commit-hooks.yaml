@@ -9,3 +9,9 @@
   description: Formats C, C++, Objective-C, and Java code
   types_or: [c, c++, c#, objective-c, java]
   language: python
+- id: get-new-hooks
+  name: get-new-hooks
+  entry: get-new-hooks
+  description: Smmm
+  files: [.pre-commit-config.yaml]
+  language: python
