@@ -12,8 +12,6 @@ import sys
 import hooks.utils
 
 
-# Regular expression for searching the Banned APIs. This is taken from the
-# Coding guideline in TF-A repo
 BANNED_APIS = ["strcpy", "wcscpy", "strncpy", "strcat", "wcscat", "strncat",
                "sprintf", "vsprintf", "strtok", "atoi", "atol", "atoll",
                "itoa", "ltoa", "lltoa"]
