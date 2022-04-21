@@ -155,28 +155,28 @@ def parse_cmd_line():
         """
     )
 
-    parser.add_argument("--tree", "-t",
-                        help="""
-                        Path to the source tree to check (default: %(default)s)
-                        """,
-                        default=os.curdir)
-    parser.add_argument("--patch", "-p",
-                        help="""
-                        Patch mode. Instead of checking all files in
-                        the source tree, the script will consider only files
-                        that are modified by the latest patch(es).
-                        """,
-                        action="store_true")
-    parser.add_argument("--from-ref",
-                        help="""
-                        Base commit in patch mode (default: %(default)s)
-                        """,
-                        default="origin/master")
-    parser.add_argument("--to-ref",
-                        help="""
-                        Final commit in patch mode (default: %(default)s)
-                        """,
-                        default="HEAD")
+    # parser.add_argument("--tree", "-t",
+    #                     help="""
+    #                     Path to the source tree to check (default: %(default)s)
+    #                     """,
+    #                     default=os.curdir)
+    # parser.add_argument("--patch", "-p",
+    #                     help="""
+    #                     Patch mode. Instead of checking all files in
+    #                     the source tree, the script will consider only files
+    #                     that are modified by the latest patch(es).
+    #                     """,
+    #                     action="store_true")
+    # parser.add_argument("--from-ref",
+    #                     help="""
+    #                     Base commit in patch mode (default: %(default)s)
+    #                     """,
+    #                     default="origin/master")
+    # parser.add_argument("--to-ref",
+    #                     help="""
+    #                     Final commit in patch mode (default: %(default)s)
+    #                     """,
+    #                     default="HEAD")
     parser.add_argument("--verbose", "-v",
                         help="Print verbose output",
                         action="store_true")
